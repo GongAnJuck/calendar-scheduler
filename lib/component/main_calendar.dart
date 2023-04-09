@@ -24,6 +24,20 @@ class MainCalendar extends StatelessWidget {
       firstDay: DateTime(1800, 1, 1), // ➊ 첫째 날
       lastDay: DateTime(3000, 1, 1), // ➋ 마지막 날
       focusedDay: DateTime.now(),
+      selectedDayPredicate: (DateTime day) {
+        final now = DateTime.now();
+        return DateTime(day.year, day.month, day.day).isAtSameMomentAs(
+          DateTime(
+            now.year,
+            now.month,
+            now.day,
+          ),
+        );
+      },
+      onDaySelected: (DateTime selectedDay, DateTime focusedDay) {},
+      onPageChanged: (DateTime focusedDay) {},
+      rangeSelectionMode: RangeSelectionMode.toggledOff,
+      onRangeSelected: (DateTime? start, DateTime? end, DateTime focusedDay) {},
       headerStyle: HeaderStyle(
         // ➊ 달력 최상단 스타일
         titleCentered: true, // 제목 중앙에 위치하기
